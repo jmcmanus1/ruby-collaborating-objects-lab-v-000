@@ -1,6 +1,8 @@
+require 'pry'
 class Artist
+  attr_accessor :name,  :songs
+
   @@all = []
-  attr_accessor :name, :songs
 
   def initialize(name)
     @name = name
@@ -8,7 +10,7 @@ class Artist
   end
 
   def self.all
-    @@all    
+    @@all
   end
 
   def add_song(song)
@@ -20,9 +22,8 @@ class Artist
   end
 
   def self.find(name)
-    self.all.find {|artist| artist.name == name }
+    self.all.find{ |artist| artist.name == name }
   end
-
 
   def self.create(name)
     self.new(name).tap {|artist| artist.save}
@@ -36,4 +37,3 @@ class Artist
     songs.each {|song| puts song.name}
   end
 end
-
